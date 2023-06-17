@@ -1,9 +1,15 @@
 # slog-ctx
-The slog-ctx is a library helps to handle the log with context using slog
 
-slog is a structured logging package, it was accepted and plan to be included in standard library from go 1.21. slog introduces the Ctx-family API, such as DebugCtx, InfoCtx, WarnCtx, ErrorCtx. But right now the slog default handler doesn't implement the context processing part.
+The slog-ctx library is designed to facilitate handling contextual logs using slog.
 
-The slog-ctx is easy to setup the slog default handler, append context values. Then start to log with standard slog Ctx-family API
+slog is a structured logging package that has been accepted and is planned to be included in the standard library starting from Go 1.21. slog introduces the Ctx family of APIs, such as DebugCtx, InfoCtx, WarnCtx, and ErrorCtx. However, the default slog handler currently does not implement the context processing functionality.
+
+With slog-ctx, setting up the slog default handler and appending context values becomes straightforward. You can then start logging using the standard slog Ctx family of APIs.
+
+Please note that since slog is not yet part of the Go language's standard library, make sure you have installed the slog package correctly before using slog-ctx.
+
+I hope this helps! Feel free to ask if you have any further questions.
+
 ## Quick Start
  ```go
 import (
