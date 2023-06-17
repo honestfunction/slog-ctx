@@ -42,11 +42,12 @@ func Handler() HandlerFunc {
 }
 
 type SlogContext struct {
-	ctxKey contextKey
+	ctxKey   contextKey
+	appendFn func(r *slog.Record, entries []entry)
 }
 
 func New(key string) *SlogContext {
-	return &SlogContext{ctxKey: contextKey(key)}
+	return &SlogContext{ctxKey: contextKey(key), appendFn: appendOverrideDup}
 }
 
 func (c *SlogContext) With(ctx context.Context, key string, val any) context.Context {
@@ -72,13 +73,30 @@ func (c *SlogContext) Handler() HandlerFunc {
 			return nil
 		}
 
-		for _, e := range entries {
-			r.AddAttrs(slog.Any(e.key, e.val))
-		}
+		// for _, e := range entries {
+		// 	r.AddAttrs(slog.Any(e.key, e.val))
+		// }
+		c.appendFn(r, entries)
 		return nil
 	}
 }
 
 func (c *SlogContext) SetKey(k string) {
 	c.ctxKey = contextKey(k)
+}
+
+func appendOverrideDup(r *slog.Record, entries []entry) {
+	m := make(map[string]any, len(entries))
+	for _, e := range entries {
+		m[e.key] = e.val
+	}
+	for k, v := range m {
+		r.AddAttrs(slog.Any(k, v))
+	}
+}
+
+func appendAllowDup(r *slog.Record, entries []entry) {
+	for _, e := range entries {
+		r.AddAttrs(slog.Any(e.key, e.val))
+	}
 }
