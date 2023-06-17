@@ -8,8 +8,6 @@ With slog-ctx, setting up the slog default handler and appending context values 
 
 Please note that since slog is not yet part of the Go language's standard library, make sure you have installed the slog package correctly before using slog-ctx.
 
-I hope this helps! Feel free to ask if you have any further questions.
-
 ## Quick Start
  ```go
 import (
