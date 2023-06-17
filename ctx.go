@@ -69,13 +69,10 @@ func (c *SlogContext) Handler() HandlerFunc {
 
 		entries, ok := val.([]entry)
 		if !ok {
-			// maybe error
+			// just ignore, maybe error
 			return nil
 		}
 
-		// for _, e := range entries {
-		// 	r.AddAttrs(slog.Any(e.key, e.val))
-		// }
 		c.appendFn(r, entries)
 		return nil
 	}
