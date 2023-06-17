@@ -11,13 +11,11 @@ import (
 	"testing"
 
 	"golang.org/x/exp/slog"
-
-	"github.com/samber/lo"
 )
 
 func TestMiddleWare(t *testing.T) {
-	appendKey := lo.RandomString(5, lo.LettersCharset)
-	appendVal := lo.RandomString(10, lo.AllCharset)
+	appendKey := randStr(5)
+	appendVal := randStr(10)
 
 	buf := bytes.NewBuffer([]byte{})
 	handler := SetupHandler(slog.NewJSONHandler(buf, nil),
