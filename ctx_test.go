@@ -17,7 +17,7 @@ func TestContextLog(t *testing.T) {
 
 	buf := bytes.NewBuffer([]byte{})
 
-	handler := Setup(slog.NewJSONHandler(buf, nil),
+	handler := SetupHandler(slog.NewJSONHandler(buf, nil),
 		Handler())
 	slog.SetDefault(slog.New(handler))
 

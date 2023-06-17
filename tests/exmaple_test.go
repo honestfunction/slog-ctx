@@ -1,17 +1,15 @@
-# slog-ctx
-The slog-ctx is a library helps to handle the log with context using slog
+package tests
 
-## Quick Start
- ```go
 import (
 	"context"
-    "os"
+	"os"
+	"testing"
 
 	slogctx "github.com/honestfunction/slog-ctx"
 	"golang.org/x/exp/slog"
 )
 
-func main() {
+func TestReadme(t *testing.T) {
 
 	handler := slogctx.Setup(slog.NewJSONHandler(os.Stdout, nil))
 	slog.SetDefault(slog.New(handler))
@@ -27,9 +25,3 @@ func main() {
 func call(ctx context.Context) {
 	slog.InfoCtx(ctx, "do something")
 }
-
-```
-
-```text
-{"time":"2023-06-17T14:04:51.886745+08:00","level":"INFO","msg":"do something","requestID":"3456789527"}
-```

@@ -20,7 +20,7 @@ func TestMiddleWare(t *testing.T) {
 	appendVal := lo.RandomString(10, lo.AllCharset)
 
 	buf := bytes.NewBuffer([]byte{})
-	handler := Setup(slog.NewJSONHandler(buf, nil),
+	handler := SetupHandler(slog.NewJSONHandler(buf, nil),
 		func(ctx context.Context, r *slog.Record) error {
 			r.AddAttrs(slog.String(appendKey, appendVal))
 			return nil

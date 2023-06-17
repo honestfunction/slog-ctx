@@ -6,7 +6,7 @@ import (
 	"golang.org/x/exp/slog"
 )
 
-func Setup(handler slog.Handler, fns ...HandlerFunc) slog.Handler {
+func SetupHandler(handler slog.Handler, fns ...HandlerFunc) slog.Handler {
 	if len(fns) == 0 {
 		return handler
 	}

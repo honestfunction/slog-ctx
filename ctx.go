@@ -29,6 +29,10 @@ func SetDefaultKey(k string) {
 	defaultSlogCtx.SetKey(k)
 }
 
+func Setup(h slog.Handler) slog.Handler {
+	return SetupHandler(h, Handler())
+}
+
 func With(ctx context.Context, key string, val any) context.Context {
 	return defaultSlogCtx.With(ctx, key, val)
 }
