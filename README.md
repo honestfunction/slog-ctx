@@ -3,6 +3,14 @@ The slog-ctx is a library helps to handle the log with context using slog
 
 ## Quick Start
  ```go
+import (
+	"context"
+    "os"
+
+	slogctx "github.com/honestfunction/slog-ctx"
+	"golang.org/x/exp/slog"
+)
+
 func main() {
 
 	handler := slogctx.Setup(slog.NewJSONHandler(os.Stdout, nil), slogctx.Handler())
